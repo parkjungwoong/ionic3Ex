@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{currentYear}}년 {{currentMonth}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addEvent()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="subscribe-list">
+      <ion-col>전체</ion-col><ion-col>Monster Hunter</ion-col><ion-col>리니지 모바일</ion-col><ion-col>호라이즌4</ion-col><ion-col>서든 어택</ion-col>
+  </div>
+
+  <div class="calendar-body">
+    <ion-grid>
+      <ion-row class="ee">
+        <ion-col class="weekday col-1 text-md-danger" >일</ion-col>
+        <ion-col class="weekday col-1">월</ion-col>
+        <ion-col class="weekday col-1">화</ion-col>
+        <ion-col class="weekday col-1">수</ion-col>
+        <ion-col class="weekday col-1">목</ion-col>
+        <ion-col class="weekday col-1">금</ion-col>
+        <ion-col class="weekday col-1">토</ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of list">
+        <ion-col *ngFor="let s of item.day" class="col-1">{{s}}</ion-col>
+        <ion-col *ngFor="let s of item.event" class="event-title {{s.color}} col-{{s.col}}" >{{s.title}}</ion-col>
+      </ion-row>
+
+<!--
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-1>1</ion-col>
+        <ion-col col-1>2</ion-col>
+        <ion-col col-1>3</ion-col>
+        <ion-col col-1>4</ion-col>
+        <ion-col col-1>5</ion-col>
+        <ion-col col-1>6</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="event-title event-color" col-3>3일짜리12313123123123123123123123</ion-col>
+        <ion-col class="event-title event-color2" col-1>1일 짜리</ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title" col-2></ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="event-title event-color" col-2>2일짜리12313123123123123123123123</ion-col>
+        <ion-col class="event-title" col-2></ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title event-color2" col-1>점검</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1>7</ion-col>
+        <ion-col col-1>8</ion-col>
+        <ion-col col-1>9</ion-col>
+        <ion-col col-1>10</ion-col>
+        <ion-col col-1>11</ion-col>
+        <ion-col col-1>12</ion-col>
+        <ion-col col-1>13</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="event-title" col-2></ion-col>
+        <ion-col class="event-title event-color" col-2>이벤트</ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title event-color2" col-1>점검</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1>14</ion-col>
+        <ion-col col-1>15</ion-col>
+        <ion-col col-1>16</ion-col>
+        <ion-col col-1>17</ion-col>
+        <ion-col col-1>18</ion-col>
+        <ion-col col-1>19</ion-col>
+        <ion-col col-1>20</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1>21</ion-col>
+        <ion-col col-1>22</ion-col>
+        <ion-col col-1>23</ion-col>
+        <ion-col col-1>24</ion-col>
+        <ion-col col-1>25</ion-col>
+        <ion-col col-1>26</ion-col>
+        <ion-col col-1>27</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="event-title event-color" col-2>2일짜리12313123123123123123123123</ion-col>
+        <ion-col class="event-title" col-2></ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title" col-1></ion-col>
+        <ion-col class="event-title event-color2" col-1>점검</ion-col>
+      </ion-row>-->
+    </ion-grid>
+  </div>
+
+<!--
+  <div class="calendar-body">
+    <ion-grid>
+      <ion-row>
+        <ion-col>일</ion-col>
+        <ion-col>월</ion-col>
+        <ion-col>화</ion-col>
+        <ion-col>수</ion-col>
+        <ion-col>목</ion-col>
+        <ion-col>금</ion-col>
+        <ion-col>토</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-2 class="event-color">
+          123
+        </ion-col>
+        <ion-col col-5 class="event-color2">
+          123
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4 class="event-color">
+          123
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <hr>
+  <div class="calendar-header">
+    <ion-row class="calendar-month">
+      <ion-col col-2 (click)="goToLastMonth()"><ion-icon name="arrow-back"></ion-icon></ion-col>
+      <ion-col col-8> {{currentYear}}년 {{currentMonth}}</ion-col>
+      <ion-col col-2 (click)="goToNextMonth()"><ion-icon name="arrow-forward"></ion-icon></ion-col>
+    </ion-row>
+  </div>
+  <div class="calendar-body">
+    <ion-grid>
+      <ion-row class="calendar-weekday">
+        <ion-col>일</ion-col>
+        <ion-col>월</ion-col>
+        <ion-col>화</ion-col>
+        <ion-col>수</ion-col>
+        <ion-col>목</ion-col>
+        <ion-col>금</ion-col>
+        <ion-col>토</ion-col>
+      </ion-row>
+      <ion-row class="calendar-date">
+        <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month" (click)="goToLastMonth()">{{lastDay}}</ion-col>
+        <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="selectDate(day)">
+          <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>
+          <ng-template #otherDate class="otherDate">
+            {{day}}<br>
+            <div class="event-bullet" *ngIf="checkEvent(day)"></div>
+          </ng-template>
+        </ion-col>
+        <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month" (click)="goToNextMonth()">{{nextDay}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="selected-event" *ngIf="isSelected">
+    <ion-list>
+      <ion-item *ngFor="let se of selectedEvent">
+        <ion-buttons end>
+          <button ion-button clear icon-only (click)="deleteEvent(se)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+        <h2>{{se.title}}</h2>
+        <h3>{{se.message}}</h3>
+        <p>Start Date: {{se.startDate}}<br>
+          Start Date: {{se.endDate}}</p>
+      </ion-item>
+    </ion-list>
+  </div>-->
+</ion-content>
